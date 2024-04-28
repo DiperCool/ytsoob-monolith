@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <ItemGroup>
+        <ProjectReference Include="..\Ytsoob.Shared\Ytsoob.Shared.csproj"/>
+    </ItemGroup>
+
+    <!-- Copy appsetings files to test projects for reading from ConfigutationBuilder directly-->
+    <!--Set CopyToPublishDirectory to always for ensuring copy to publish directory and prevent to conflict with other appsentigs.json, if don't set this it is possible other refrence project setting ovverid its own settings in publish dir-->
+    <ItemGroup>
+        <Content Include="..\Ytsoob.Api\appsettings.json" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="Always"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <InternalsVisibleTo Include="Ytsoob.IntegrationTests"/>
+        <InternalsVisibleTo Include="Ytsoob.EndToEndTests"/>
+        <InternalsVisibleTo Include="Ytsoob.ContractTests"/>
+        <InternalsVisibleTo Include="Ytsoob.UnitTests"/>
+        <InternalsVisibleTo Include="Ytsoob.TestsShared"/>
+    </ItemGroup>
+
+</Project>
