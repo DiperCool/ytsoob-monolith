@@ -74,6 +74,7 @@
         <PackageReference Include="SerilogTimings"/>
         <PackageReference Include="Serilog.OpenTelemetry.ConsoleSink"/>
         <PackageReference Include="Serilog.Sinks.Debug"/>
+        <PackageReference Include="IdGen" />
     </ItemGroup>
 
 </Project>

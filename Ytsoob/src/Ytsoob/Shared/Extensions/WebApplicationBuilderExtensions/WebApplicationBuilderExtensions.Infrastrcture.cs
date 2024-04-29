@@ -1,6 +1,7 @@
 using CorrelationId.DependencyInjection;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
+using Ytsoob.Shared.Abstractions.Core;
 using Ytsoob.Shared.Abstractions.Ef.Repository;
 using Ytsoob.Shared.Cache;
 using Ytsoob.Shared.Cache.Behaviours;
@@ -13,6 +14,7 @@ using Ytsoob.Shared.Validation;
 using Ytsoob.Shared.Validation.Extensions;
 using Ytsoob.Shared.Web.Extensions;
 using Ytsoob.Shared.Web.Extensions.WebApplicationBuilderExtensions;
+using Ytsoob.Shared.Web.Minimal.Extensions;
 
 namespace Ytsoob.Shared.Extensions.WebApplicationBuilderExtensions;
 
@@ -20,6 +22,7 @@ public static partial class WebApplicationBuilderExtensions
 {
     public static WebApplicationBuilder AddInfrastructures(this WebApplicationBuilder builder)
     {
+        SnowFlakIdGenerator.Configure(1);
         builder.Services.AddCore();
 
         // https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis/security
@@ -35,7 +38,7 @@ public static partial class WebApplicationBuilderExtensions
         builder.AddCustomSwagger();
 
         builder.AddCustomVersioning();
-
+        builder.AddMinimalEndpoints();
         builder.AddCustomCors();
 
         // https://github.com/tonerdo/dotnet-env
