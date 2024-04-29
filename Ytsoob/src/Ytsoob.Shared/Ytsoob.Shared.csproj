@@ -75,6 +75,7 @@
         <PackageReference Include="Serilog.OpenTelemetry.ConsoleSink"/>
         <PackageReference Include="Serilog.Sinks.Debug"/>
         <PackageReference Include="IdGen" />
+        <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" />
     </ItemGroup>
 
 </Project>

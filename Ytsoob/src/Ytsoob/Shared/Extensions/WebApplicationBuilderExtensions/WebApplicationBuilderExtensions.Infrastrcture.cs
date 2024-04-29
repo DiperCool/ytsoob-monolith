@@ -3,12 +3,14 @@ using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Ytsoob.Shared.Abstractions.Core;
 using Ytsoob.Shared.Abstractions.Ef.Repository;
+using Ytsoob.Shared.Auth0;
 using Ytsoob.Shared.Cache;
 using Ytsoob.Shared.Cache.Behaviours;
 using Ytsoob.Shared.Core.Extensions.ServiceCollectionsExtensions;
 using Ytsoob.Shared.Data;
 using Ytsoob.Shared.EF;
 using Ytsoob.Shared.Logging;
+using Ytsoob.Shared.Securiry;
 using Ytsoob.Shared.Swagger;
 using Ytsoob.Shared.Validation;
 using Ytsoob.Shared.Validation.Extensions;
@@ -25,18 +27,14 @@ public static partial class WebApplicationBuilderExtensions
         SnowFlakIdGenerator.Configure(1);
         builder.Services.AddCore();
 
-        // https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis/security
-        builder.Services.AddAuthentication().AddJwtBearer();
-        builder.Services.AddAuthorization();
-
         builder.AddCustomEasyCaching();
-
+        builder.AddAuth0();
         // https://github.com/stevejgordon/CorrelationId
         builder.Services.AddDefaultCorrelationId();
 
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         builder.AddCustomSwagger();
-
+        builder.Services.AddScoped<ICurrentUserService, CurrentUserService>();
         builder.AddCustomVersioning();
         builder.AddMinimalEndpoints();
         builder.AddCustomCors();

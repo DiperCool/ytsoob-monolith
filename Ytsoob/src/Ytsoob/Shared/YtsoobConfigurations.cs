@@ -3,12 +3,13 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
 using Ytsoob.Shared.Extensions.WebApplicationBuilderExtensions;
 using Ytsoob.Shared.Extensions.WebApplicationExtensions;
+using Ytsoob.Shared.Web.Minimal.Extensions;
 
 namespace Ytsoob.Shared;
 
 public static class YtsoobConfigurations
 {
-    public const string YtsoobPrefixUri = "api/v{version:apiVersion}";
+    public const string PrefixUri = "api/v{version:apiVersion}";
 
     public static WebApplicationBuilder AddYtsoobServices(this WebApplicationBuilder builder)
     {
@@ -39,6 +40,7 @@ public static class YtsoobConfigurations
     {
         // Shared
         endpoints.MapGet("/", () => "Ytsoob  Api.").ExcludeFromDescription();
+        endpoints.MapMinimalEndpoints();
 
         // Modules
 

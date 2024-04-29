@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Ytsoob.Shared.Data;
@@ -11,9 +12,11 @@ using Ytsoob.Shared.Data;
 namespace Ytsoob.Shared.Data.Migrations
 {
     [DbContext(typeof(YtsoobDbContext))]
-    partial class YtsoobDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240429203757_YtsoobIdToString")]
+    partial class YtsoobIdToString
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
